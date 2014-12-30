@@ -1,4 +1,5 @@
 #include "snake.h"
+#include "colors.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -11,11 +12,11 @@ void Snake::init() {
   head_dot = 0;
 }
 
-void Snake::plot(uint8_t x, uint8_t y, uint8_t c) {
+void Snake::plot(uint8_t x, uint8_t y, uint32_t c) {
   // Flip y on an odd column
   if ((x & 1) == 1)
     y = rows - y - 1;
-  pixels.setPixelColor(((uint16_t) x * rows) + y, c ? 0xFFFFFF : 0);
+  pixels.setPixelColor(((uint16_t) x * rows) + y, c);
 }
 
 void Snake::change_direction(dot* head) {
@@ -39,31 +40,45 @@ void Snake::change_direction(dot* head) {
 }
 
 void Snake::step() {
-  delay(200);
+  delay(50);
 
-  dot* head = &dots[head_dot];
+  // Update the snake occasionally, otherwise just do the colours
+  if (++loops > 4) {
+    loops = 0;
 
-  // Erase the last dot
-  head_dot = (head_dot + 1) % length;
-  dot* next = &dots[head_dot];
-  if (next->x != -1)
-    plot(next->x, next->y, 0);
+    dot* head = &dots[head_dot];
 
-  if ((direction == UP && head->y == 0)
-      || (direction == DOWN && head->y == rows-1)
-      || (direction == LEFT && head->x == 0)
-      || (direction == RIGHT && head->x == cols-1)
-      || ((random() & 0x09) == 0))
-    change_direction(head);
+    // Erase the last dot
+    head_dot = (head_dot + 1) % length;
+    dot* next = &dots[head_dot];
+    if (next->x != -1)
+      plot(next->x, next->y, 0);
 
-  next->x = head->x;
-  next->y = head->y;
-  switch(direction) {
-  case UP:    --next->y; break;
-  case DOWN:  ++next->y; break;
-  case LEFT:  --next->x; break;
-  case RIGHT: ++next->x; break;
+    if ((direction == UP && head->y == 0)
+        || (direction == DOWN && head->y == rows-1)
+        || (direction == LEFT && head->x == 0)
+        || (direction == RIGHT && head->x == cols-1)
+        || ((random() & 0x09) == 0))
+      change_direction(head);
+
+    next->x = head->x;
+    next->y = head->y;
+    switch(direction) {
+    case UP:        --next->y; break;
+    case DOWN:    ++next->y; break;
+    case LEFT:    --next->x; break;
+    case RIGHT: ++next->x; break;
+    }
   }
 
-  plot(next->x, next->y, 1);
+  // Plot the snake
+  uint8_t i = head_dot;
+  uint8_t c = head_color;
+  do {
+    dot* d = dots + i;
+    plot(d->x, d->y, COLORS[c]);
+    i = i == 0 ? length-1 : i-1;
+    c = (c+1) % COLORS_COUNT;
+  } while (i != head_dot);
+  head_color = head_color == 0 ? (COLORS_COUNT - 1) : (head_color - 1);
 }
