@@ -1,5 +1,6 @@
 #include "Adafruit_NeoPixel.h"
 #include "matrix.h"
+#include "snake.h"
 #include <string.h>
 #include <stdint.h>
 
@@ -16,7 +17,7 @@ void setup() {
   pixels.begin();
   pixels.show();
 
-  effect = new Matrix(pixels, COLS, ROWS);
+  effect = new Snake(pixels, COLS, ROWS);
   effect->init();
 }
 

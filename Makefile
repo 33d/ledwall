@@ -2,7 +2,7 @@ PROJECT	       = ledwall
 
 PRG            = $(PROJECT)
 OBJECTS        = 
-AVR_OBJECTS    = Adafruit_NeoPixel matrix main
+AVR_OBJECTS    = Adafruit_NeoPixel matrix snake main
 TEST_OBJECTS   = 
 
 CLEAN          = *.o *.avro $(PRG).elf *.eps *.png *.pdf *.bak \
