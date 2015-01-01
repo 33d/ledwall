@@ -16,7 +16,6 @@ class Snake: public Pattern {
   uint8_t head_dot;
   uint8_t head_color;
   uint8_t loops;
-  void plot(uint8_t x, uint8_t y, uint32_t c);
   void change_direction(dot* head);
 public:
   Snake(Adafruit_NeoPixel& pixels, uint8_t cols, uint8_t rows)

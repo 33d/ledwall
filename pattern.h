@@ -9,6 +9,8 @@ protected:
   Adafruit_NeoPixel& pixels;
   const uint8_t rows;
   const uint8_t cols;
+  void plot(uint8_t x, uint8_t y, uint32_t c);
+  void plot(uint8_t x, uint8_t y, uint8_t r, uint8_t g, uint8_t b);
 public:
   Pattern(Adafruit_NeoPixel& pixels, uint8_t cols, uint8_t rows)
     : pixels(pixels), rows(rows), cols(cols) {}

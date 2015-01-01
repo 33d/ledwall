@@ -1,6 +1,7 @@
 #include "Adafruit_NeoPixel.h"
 #include "matrix.h"
 #include "snake.h"
+#include "scroll.h"
 #include <string.h>
 #include <stdint.h>
 
@@ -21,7 +22,7 @@ void next_effect() {
   delete effect;
   pixels.clear();
   switch (id) {
-  case 0: effect = new Snake(pixels, COLS, ROWS); break;
+  case 0: effect = new Scroll(pixels, COLS, ROWS); break;
   case 1: effect = new Matrix(pixels, COLS, ROWS); break;
   }
   effect->init();

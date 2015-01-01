@@ -12,13 +12,6 @@ void Snake::init() {
   head_dot = 0;
 }
 
-void Snake::plot(uint8_t x, uint8_t y, uint32_t c) {
-  // Flip y on an odd column
-  if ((x & 1) == 1)
-    y = rows - y - 1;
-  pixels.setPixelColor(((uint16_t) x * rows) + y, c);
-}
-
 void Snake::change_direction(dot* head) {
   Direction d;
   if (direction == UP || direction == DOWN) {
