@@ -2,7 +2,7 @@ PROJECT	       = ledwall
 
 PRG            = $(PROJECT)
 OBJECTS        = 
-AVR_OBJECTS    = Adafruit_NeoPixel matrix snake main
+AVR_OBJECTS    = Adafruit_NeoPixel pattern matrix snake main
 TEST_OBJECTS   = 
 
 CLEAN          = *.o *.avro $(PRG).elf *.eps *.png *.pdf *.bak \
@@ -32,7 +32,7 @@ AVRCPP         = avr-g++
 # Override is only needed by avr-lib build system.
 
 CALLFLAGS      = -g -Wall $(OPTIMIZE) -mmcu=$(MCU_TARGET) \
-	-ffunction-sections -fdata-sections \
+	-ffunction-sections -fdata-sections -Wall -Werror \
 	$(DEFS)
 	#-funsigned-char -funsigned-bitfields -fpack-struct -short-enums 
 override AVRCFLAGS        = -I. $(CALLFLAGS) -std=gnu99  
