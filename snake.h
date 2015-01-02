@@ -21,7 +21,7 @@ public:
   Snake(Adafruit_NeoPixel& pixels, uint8_t cols, uint8_t rows)
     : Pattern(pixels, cols, rows), direction(RIGHT), head_dot(0), head_color(0), loops(0) {}
   void init();
-  void step();
+  bool step();
   virtual ~Snake() {};
 };
 

@@ -32,7 +32,7 @@ void Snake::change_direction(dot* head) {
   direction = d;
 }
 
-void Snake::step() {
+bool Snake::step() {
   delay(50);
 
   // Update the snake occasionally, otherwise just do the colours
@@ -74,4 +74,6 @@ void Snake::step() {
     c = (c+1) % COLORS_COUNT;
   } while (i != head_dot);
   head_color = head_color == 0 ? (COLORS_COUNT - 1) : (head_color - 1);
+
+  return true;
 }

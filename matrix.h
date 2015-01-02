@@ -26,7 +26,7 @@ public:
   Matrix(Adafruit_NeoPixel& pixels, uint8_t cols, uint8_t rows)
     : Pattern(pixels, cols, rows) {}
   void init();
-  void step();
+  bool step();
   virtual ~Matrix() {};
 };
 

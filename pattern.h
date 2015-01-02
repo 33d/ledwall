@@ -15,7 +15,7 @@ public:
   Pattern(Adafruit_NeoPixel& pixels, uint8_t cols, uint8_t rows)
     : pixels(pixels), rows(rows), cols(cols) {}
   virtual void init() = 0;
-  virtual void step() = 0;
+  virtual bool step() = 0;
   virtual ~Pattern() {};
 };
 

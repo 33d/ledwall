@@ -10,7 +10,7 @@ void Scroll::init() {
   pos = 0;
 }
 
-void Scroll::step() {
+bool Scroll::step() {
   delay(1);
 
   // How much to contribute to the first column
@@ -33,6 +33,5 @@ void Scroll::step() {
   }
 
   ++pos;
-  if (pos >= ((uint16_t) WIDTH + cols) * sub + gap)
-    init();
+  return (pos < ((uint16_t) WIDTH + cols) * sub + gap);
 }

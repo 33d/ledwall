@@ -24,7 +24,7 @@ void Matrix::fade() {
       --p[i];
 }
 
-void Matrix::step() {
+bool Matrix::step() {
   delay(5);
   fade();
 
@@ -56,4 +56,6 @@ void Matrix::step() {
     } else
       ++d->val;
   }
+
+  return true;
 }

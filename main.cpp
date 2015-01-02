@@ -16,6 +16,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(ROWS*COLS, PIN, NEO_GRB + NEO_KHZ80
 
 Pattern *effect;
 unsigned long last_change;
+bool cont;
 
 void next_effect() {
   static uint8_t id = 0;
@@ -24,9 +25,11 @@ void next_effect() {
   switch (id) {
   case 0: effect = new Scroll(pixels, COLS, ROWS); break;
   case 1: effect = new Matrix(pixels, COLS, ROWS); break;
+  case 2: effect = new Snake(pixels, COLS, ROWS); break;
   }
   effect->init();
-  id = (id+1) % 2;
+  id = (id+1) % 3;
+  cont = true;
 }
 
 void setup() {
@@ -40,11 +43,13 @@ void setup() {
 }
 
 void loop() {
-  if (millis() - last_change > EFFECT_TIME) {
+  if (!cont || millis() - last_change > EFFECT_TIME) {
     next_effect();
     last_change = millis();
   }
 
-  effect->step();
+  if (!effect->step())
+    // the pattern doesn't want to continue
+    cont = false;
   pixels.show();
 }

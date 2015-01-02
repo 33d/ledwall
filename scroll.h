@@ -12,7 +12,7 @@ public:
   Scroll(Adafruit_NeoPixel& pixels, uint8_t cols, uint8_t rows)
     : Pattern(pixels, cols, rows), pos(0), gap(cols*sub) {}
   void init();
-  void step();
+  bool step();
   virtual ~Scroll() {};
 };
 
