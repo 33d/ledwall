@@ -11,22 +11,22 @@
 #include <stdint.h>
 
 uint32_t COLORS[] = {
-    0x00FFFF51,
-    0x0051FF51,
-    0x0072FF51,
-    0x00B3FF51,
-    0x00F1CC51,
-    0x00FF8A51,
-    0x00FF5159,
-    0x00FF519B,
-    0x00FF51DC,
-    0x00FF51FF,
-    0x00E051FF,
-    0x009F51FF,
-    0x006182FF,
-    0x0051C4FF,
-    0x0051FFF9,
-    0x0051FFB7
+    0xFF0000,
+    0xFF0035,
+    0xFF0095,
+    0xFF00F4,
+    0xAA00FF,
+    0x4C00FF,
+    0x0014FF,
+    0x0073FF,
+    0x00D3FF,
+    0x00FFCC,
+    0x00FF6D,
+    0x00FF0E,
+    0x51FF00,
+    0xB1FF00,
+    0xFFED00,
+    0xFF8F00
 };
 
 #define COLORS_COUNT (sizeof(COLORS) / sizeof(uint32_t))
