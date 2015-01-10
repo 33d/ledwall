@@ -2,6 +2,7 @@
 #include "matrix.h"
 #include "snake.h"
 #include "scroll.h"
+#include "plasma.h"
 #include <string.h>
 #include <stdint.h>
 
@@ -23,12 +24,13 @@ void next_effect() {
   delete effect;
   pixels.clear();
   switch (id) {
-  case 0: effect = new Scroll(pixels, COLS, ROWS); break;
-  case 1: effect = new Matrix(pixels, COLS, ROWS); break;
-  case 2: effect = new Snake(pixels, COLS, ROWS); break;
+  case 0: effect = new Plasma(pixels, COLS, ROWS); break;
+  case 1: effect = new Scroll(pixels, COLS, ROWS); break;
+  case 2: effect = new Matrix(pixels, COLS, ROWS); break;
+  case 3: effect = new Snake(pixels, COLS, ROWS); break;
   }
   effect->init();
-  id = (id+1) % 3;
+  id = (id+1) % 4;
   cont = true;
 }
 
