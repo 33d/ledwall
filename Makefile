@@ -42,8 +42,8 @@ override AVRLDFLAGS       = -Wl,-Map,$(PRG).map
 AVROBJCOPY      = avr-objcopy
 OBJDUMP         = avr-objdump
 
-ARDUINO_CORE = $(ARDUINO_HOME)/hardware/arduino/cores/arduino
-ARDUINO_VARIANT = $(ARDUINO_HOME)/hardware/arduino/variants/standard/
+ARDUINO_CORE = $(ARDUINO_HOME)/hardware/arduino/avr/cores/arduino
+ARDUINO_VARIANT = $(ARDUINO_HOME)/hardware/arduino/avr/variants/standard/
 INCLUDES = -I$(ARDUINO_CORE) -I$(ARDUINO_VARIANT)
 
 BUILD_DIR	= build
@@ -136,8 +136,8 @@ FIG2DEV                 = fig2dev
 EXTRA_CLEAN_FILES       = *.hex *.bin *.srec
 
 ifeq ($(PROGRAMMER),arduino)
-AVRDUDE = $(ARDUINO_HOME)/hardware/tools/avrdude \
-		-C$(ARDUINO_HOME)/hardware/tools/avrdude.conf \
+AVRDUDE = $(ARDUINO_HOME)/hardware/tools/avr/bin/avrdude \
+		-C$(ARDUINO_HOME)/hardware/tools/avr/etc/avrdude.conf \
 		-p$(MCU_TARGET) -cstk500v1 -P$(UPLOAD_PORT) \
 		-b$(UPLOAD_SPEED)
 
